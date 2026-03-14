@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.fentastic" name="FENtastic Community Repository" version="1.0.0"
+<addon id="repository.fentastic" name="FENtastic Community Repository" version="1.0.1"
     provider-name="FENtastic Community">
     <extension point="xbmc.addon.repository" name="FENtastic Community Repository">
         <dir>
-            <info compressed="false">
-                https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/addons.xml</info>
-            <checksum>
-                https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/addons.xml.md5</checksum>
-            <datadir zip="true">
-                https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/</datadir>
         </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
