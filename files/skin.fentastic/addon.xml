@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="skin.fentastic" version="1.0.25" name="FENtastic"
-	provider-name="Ivar Brandt">
+<addon id="skin.fentastic" version="1.0.26" name="FENtastic"
+	provider-name="fentastic-org, Ivar Brandt">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
 		<import addon="script.fentastic.helper" />
@@ -17,9 +17,9 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
-		<license>CC BY-SA 4.0, GNU GENERAL PUBLIC LICENSE Version 2.0</license>
-		<forum>http://forum.kodi.tv/</forum>
-		<source>https://github.com/xbmc/skin.estuary/</source>
+		<license> GPL-2.0, CC-BY-SA-4.0</license>
+		<forum>https://forum.kodi.tv/</forum>
+		<source>https://github.com/fentastic-org/skin.fentastic</source>
 		<assets>
 			<icon>resources/icon.png</icon>
 			<fanart>resources/fanart.jpg</fanart>
@@ -27,11 +27,11 @@
 			<screenshot>resources/images/infopanel.jpg</screenshot>
 			<screenshot>resources/images/viewtypes1.jpg</screenshot>
 		</assets>
-		<summary lang="en_GB">FENtastic skin by Ivar Brandt (Estuary MOD)</summary>
-		<summary lang="en_NZ">FENtastic skin by Ivar Brandt (Estuary MOD)</summary>
-		<summary lang="en_US">FENtastic skin by Ivar Brandt (Estuary MOD)</summary>
-		<description lang="en_GB">FENtastic is a modified version of the default Estuary skin for Kodi Nexus. It is intended for use only with FEN.[CR][CR]See [B]CHANGELOG[/B] located in Skin settings » Extra info for latest changes.</description>
-		<description lang="en_NZ">FENtastic is a modified version of the default Estuary skin for Kodi Nexus. It is intended for use only with FEN.[CR][CR]See [B]CHANGELOG[/B] located in Skin settings » Extra info for latest changes.</description>
-		<description lang="en_US">FENtastic is a modified version of the default Estuary skin for Kodi Nexus. It is intended for use only with FEN.[CR][CR]See [B]CHANGELOG[/B] located in Skin settings » Extra info for latest changes.</description>
+		<summary lang="en_GB">FENtastic skin (Estuary MOD) — community fork by fentastic-org</summary>
+		<summary lang="en_NZ">FENtastic skin (Estuary MOD) — community fork by fentastic-org</summary>
+		<summary lang="en_US">FENtastic skin (Estuary MOD) — community fork by fentastic-org</summary>
+		<description lang="en_GB">FENtastic is a community-maintained fork of Ivar Brandt's FENtastic skin, based on the default Estuary skin for Kodi. Features include custom viewtypes, customizable widgets, advanced HDR/video processing overlays, and more.[CR][CR]See [B]CHANGELOG[/B] located in Skin settings » Extra info for latest changes.</description>
+		<description lang="en_NZ">FENtastic is a community-maintained fork of Ivar Brandt's FENtastic skin, based on the default Estuary skin for Kodi. Features include custom viewtypes, customizable widgets, advanced HDR/video processing overlays, and more.[CR][CR]See [B]CHANGELOG[/B] located in Skin settings » Extra info for latest changes.</description>
+		<description lang="en_US">FENtastic is a community-maintained fork of Ivar Brandt's FENtastic skin, based on the default Estuary skin for Kodi. Features include custom viewtypes, customizable widgets, advanced HDR/video processing overlays, and more.[CR][CR]See [B]CHANGELOG[/B] located in Skin settings » Extra info for latest changes.</description>
 	</extension>
 </addon>
