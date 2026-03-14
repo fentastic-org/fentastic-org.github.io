@@ -16,31 +16,51 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Check for upstream changes
+        id: upstream
+        run: |
+          # Get latest commit SHAs from source repos
+          HELPER_SHA=$(git ls-remote https://github.com/fentastic-org/script.fentastic.helper HEAD | cut -f1)
+          SKIN_SHA=$(git ls-remote https://github.com/fentastic-org/skin.fentastic HEAD | cut -f1)
+          CURRENT="${HELPER_SHA}:${SKIN_SHA}"
+
+          echo "Current upstream: $CURRENT"
+
+          # Compare against last known state
+          if [ -f .last-upstream-shas ] && [ "$(cat .last-upstream-shas)" = "$CURRENT" ]; then
+            echo "No upstream changes detected, skipping update."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Upstream changes detected."
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "$CURRENT" > .last-upstream-shas
+          fi
+
       - name: Set up Python
+        if: steps.upstream.outputs.changed == 'true'
         uses: actions/setup-python@v6
         with:
           python-version: "3.x"
 
       - name: Install dependencies
+        if: steps.upstream.outputs.changed == 'true'
         run: pip install gitpython
 
       - name: Run create_repository.py
+        if: steps.upstream.outputs.changed == 'true'
         run: |
           python scripts/create_repository.py \
             --datadir=files \
             https://github.com/fentastic-org/script.fentastic.helper \
             https://github.com/fentastic-org/skin.fentastic
 
-      - name: Check for changes
-        id: changes
-        run: |
-          git diff --quiet && echo "changed=false" >> "$GITHUB_OUTPUT" || echo "changed=true" >> "$GITHUB_OUTPUT"
-
       - name: Commit and push changes
-        if: steps.changes.outputs.changed == 'true'
+        if: steps.upstream.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add files/
+          git add files/ .last-upstream-shas
+          # Check if there's anything to commit
+          git diff --staged --quiet && exit 0
           git commit -m "Update repository add-ons"
           git push
