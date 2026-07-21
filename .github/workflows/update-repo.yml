@@ -101,6 +101,10 @@ jobs:
         if: steps.upstream.outputs.changed == 'true'
         run: python scripts/prune_old_versions.py files files/omega files/piers
 
+      - name: Publish add-on artwork
+        if: steps.upstream.outputs.changed == 'true'
+        run: python scripts/copy_addon_assets.py files files/omega files/piers
+
       - name: Pack repository add-on zip for manual download
         if: steps.upstream.outputs.changed == 'true'
         run: python scripts/zip_repo.py
