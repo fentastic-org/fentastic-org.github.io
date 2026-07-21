@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<addons><addon id="repository.fentastic" name="FENtastic Community Repository" version="1.0.2" provider-name="FENtastic Community">
+<addons><addon id="repository.fentastic" name="FENtastic Community Repository" version="1.0.3" provider-name="FENtastic Community">
     <extension point="xbmc.addon.repository" name="FENtastic Community Repository">
         <dir minversion="21.0.0" maxversion="21.9.9">
             <info compressed="false">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/omega/addons.xml</info>
@@ -43,7 +43,7 @@
         <description lang="en_NZ">FENtastic Helper for the FENtastic Skin.</description>
         <description lang="en_US">FENtastic Helper for the FENtastic Skin.</description>
     </extension>
-</addon><addon id="skin.fentastic" version="1.5.3" name="FENtastic (Community)" provider-name="fentastic-org, Ivar Brandt">
+</addon><addon id="skin.fentastic" version="1.5.4" name="Fentastic" provider-name="fentastic-org, Ivar Brandt">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
 		<import addon="script.fentastic.helper" />
