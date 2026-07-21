@@ -19,10 +19,31 @@ jobs:
       - name: Check for upstream changes
         id: upstream
         run: |
-          # Get latest commit SHAs from source repos
-          HELPER_SHA=$(git ls-remote https://github.com/fentastic-org/script.fentastic.helper HEAD | cut -f1)
-          SKIN_SHA=$(git ls-remote https://github.com/fentastic-org/skin.fentastic HEAD | cut -f1)
-          CURRENT="${HELPER_SHA}:${SKIN_SHA}"
+          # Branch each Kodi target builds from. Today Omega and Piers share
+          # one branch; when Piers needs a breaking change, cut an `omega`
+          # branch off main and point OMEGA_BRANCH at it. Change-detection
+          # below tracks whatever branches these name, so a divergent branch
+          # still triggers rebuilds.
+          OMEGA_BRANCH=main
+          PIERS_BRANCH=main
+          echo "OMEGA_BRANCH=${OMEGA_BRANCH}" >> "$GITHUB_ENV"
+          echo "PIERS_BRANCH=${PIERS_BRANCH}" >> "$GITHUB_ENV"
+
+          # Get latest commit SHAs for every branch we build from
+          CURRENT=""
+          for BRANCH in $(printf '%s\n%s\n' "$OMEGA_BRANCH" "$PIERS_BRANCH" | sort -u); do
+            for REPO in script.fentastic.helper skin.fentastic; do
+              SHA=$(git ls-remote "https://github.com/fentastic-org/${REPO}" "refs/heads/${BRANCH}" | cut -f1)
+              if [ -z "$SHA" ]; then
+                echo "::error::Branch ${BRANCH} not found in ${REPO}"
+                exit 1
+              fi
+              CURRENT="${CURRENT}${REPO}@${BRANCH}=${SHA}:"
+            done
+          done
+          # Rebuild when the repo add-on itself is bumped, not just on upstream commits
+          REPO_VERSION=$(python3 -c "import xml.etree.ElementTree as ET; print(ET.parse('files/repository.fentastic/addon.xml').getroot().get('version'))")
+          CURRENT="${CURRENT}repository.fentastic=${REPO_VERSION}"
 
           echo "Current upstream: $CURRENT"
 
@@ -46,20 +67,46 @@ jobs:
         if: steps.upstream.outputs.changed == 'true'
         run: pip install gitpython
 
-      - name: Run create_repository.py
+      # Legacy flat catalog. repository.fentastic 1.0.1 shipped with these paths
+      # hardcoded, so they must keep working until installs of it die out --
+      # this is the only channel through which 1.0.1 clients can reach 1.0.2.
+      - name: Build legacy flat catalog
         if: steps.upstream.outputs.changed == 'true'
         run: |
           python scripts/create_repository.py \
             --datadir=files \
+            files/repository.fentastic \
             https://github.com/fentastic-org/script.fentastic.helper \
             https://github.com/fentastic-org/skin.fentastic
+
+      - name: Build Omega catalog
+        if: steps.upstream.outputs.changed == 'true'
+        run: |
+          python scripts/create_repository.py \
+            --datadir=files/omega \
+            files/repository.fentastic \
+            "https://github.com/fentastic-org/script.fentastic.helper#${OMEGA_BRANCH}" \
+            "https://github.com/fentastic-org/skin.fentastic#${OMEGA_BRANCH}"
+
+      - name: Build Piers catalog
+        if: steps.upstream.outputs.changed == 'true'
+        run: |
+          python scripts/create_repository.py \
+            --datadir=files/piers \
+            files/repository.fentastic \
+            "https://github.com/fentastic-org/script.fentastic.helper#${PIERS_BRANCH}" \
+            "https://github.com/fentastic-org/skin.fentastic#${PIERS_BRANCH}"
+
+      - name: Pack repository add-on zip for manual download
+        if: steps.upstream.outputs.changed == 'true'
+        run: python scripts/zip_repo.py
 
       - name: Commit and push changes
         if: steps.upstream.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add files/ .last-upstream-shas
+          git add files/ .last-upstream-shas index.html repository.fentastic-*.zip
           # Check if there's anything to commit
           git diff --staged --quiet && exit 0
           git commit -m "Update repository add-ons"

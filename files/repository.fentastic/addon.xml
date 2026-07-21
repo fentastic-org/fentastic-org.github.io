@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.fentastic" name="FENtastic Community Repository" version="1.0.1"
+<addon id="repository.fentastic" name="FENtastic Community Repository" version="1.0.2"
     provider-name="FENtastic Community">
     <extension point="xbmc.addon.repository" name="FENtastic Community Repository">
-        <dir>
-            <info compressed="false">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/</datadir>
+        <dir minversion="21.0.0" maxversion="21.9.9">
+            <info compressed="false">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/omega/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/omega/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/omega/</datadir>
+        </dir>
+        <dir minversion="22.0.0">
+            <info compressed="false">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/piers/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/piers/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/fentastic-org/fentastic-org.github.io/main/files/piers/</datadir>
         </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
