@@ -1,25 +1,33 @@
-[B]1.5.6[/B]
+[B][COLOR accent_color]Version 1.5.7[/COLOR][/B]
+• Fixed the Favourites button in the media menu not opening on Kodi 21
+• Collections, video versions and extras now show their own badge instead of
+  replacing the watched status
+• Added watched/total counts for seasons and movie sets
+• Updated the Rotten Tomatoes rating icons to their current branding
+• Changelog viewer now reads changelog.txt instead of a hardcoded copy
+
+[B][COLOR accent_color]Version 1.5.6[/COLOR][/B]
 • Replaced licence files with the verbatim GPL-2.0 and CC BY-SA 4.0 texts
 • Updated install instructions to point at the fentastic-org repository
 
-[B]1.5.5[/B]
+[B][COLOR accent_color]Version 1.5.5[/COLOR][/B]
 • Split LICENSE.txt into separate LICENSE and LICENSE-ARTWORK files
 
-[B]1.5.4[/B]
+[B][COLOR accent_color]Version 1.5.4[/COLOR][/B]
 • Renamed add-on to "Fentastic"
 
-[B]1.5.3[/B]
+[B][COLOR accent_color]Version 1.5.3[/COLOR][/B]
 • Added Red Light as a search provider
 
-[B]1.0.25[/B]
+[B][COLOR accent_color]Version 1.0.25[/COLOR][/B]
 • Quick fix for landscape artwork
 
-[B]1.0.24[/B]
+[B][COLOR accent_color]Version 1.0.24[/COLOR][/B]
 • Updated skin for Kodi Omega
 • Added Search support for POV and Seren
 • Other small fixes
 
-[B]1.0.23[/B]
+[B][COLOR accent_color]Version 1.0.23[/COLOR][/B]
 • Fixed a few bugs related to one-click trailers
 • Added search window (SW) functionality for FEN Light and Umbrella
   • Set the default add on to use in Skin settings » Search
@@ -29,13 +37,13 @@
 • Moved 'Clear Search History' to Search tab in Skin settings
 • Other small bug fixes
 
-[B]1.0.22[/B]
+[B][COLOR accent_color]Version 1.0.22[/COLOR][/B]
 • Fixed ratings not showing on some items
 • Readded Embuary Helper/Info functionality to Video Info window
 
 [B]Please make sure to clear the ratings cache and restart Kodi before trying to fetch ratings again.[/B]
 
-[B]1.0.21[/B]
+[B][COLOR accent_color]Version 1.0.21[/COLOR][/B]
 • Switched ratings source to MDbList for better tvshow support (enter MDbList API Key in Skin settings to activate)
 • Created Ratings section in Skin settings
 • Added on/off toggles for individual ratings
@@ -53,13 +61,13 @@
 • Added optional one-click close of Kodi via the homescreen power button. If you decide to use this you can still access the shutdown menu by holding the back key/backspace on your remote/keyboard.
 • Other changes/fixes
 
-[B]1.0.20[/B]
+[B][COLOR accent_color]Version 1.0.20[/COLOR][/B]
 • Fixed crashing bug. You can now enable ReuseLanguageInvoker in FEN.
 • Added overlay for background media playback
 • Added network sources for choosing of custom background
 • Removed [B]Tip: Crashes[/B] window
 
-[B]1.0.19[/B]
+[B][COLOR accent_color]Version 1.0.19[/COLOR][/B]
 • Updated UI for a more artwork centric experience
 • Updated widgets to handle menu items better
 • Added 3 NEW custom main menu sections
@@ -75,17 +83,17 @@
 • Removed color themes
 • Other changes/fixes
 
-[B]1.0.18[/B]
+[B][COLOR accent_color]Version 1.0.18[/COLOR][/B]
 • Small bug fix
 
-[B]1.0.17[/B]
+[B][COLOR accent_color]Version 1.0.17[/COLOR][/B]
 • Brought back optional alternate InfoPanel
 • Brought back %, progress is now shown as '33% watched' instead of '33'
 • Added air date to InfoPanel for episodes
 • Made icon silhouettes for category widgets optional
 • Other small changes/fixes
 
-[B]1.0.16[/B]
+[B][COLOR accent_color]Version 1.0.16[/COLOR][/B]
 • Added BigPoster, BigLandscape, and BigLandscapeInfo widget display types
 • Updated Wall views to use bigger artwork
 • Increased visibility of raindrop background
@@ -102,10 +110,10 @@
 • Removed alternate InfoPanel
 • Fixed profile change bug
 
-[B]1.0.15[/B]
+[B][COLOR accent_color]Version 1.0.15[/COLOR][/B]
 • Small bug fix for TRAKT search widget
 
-[B]1.0.14[/B]
+[B][COLOR accent_color]Version 1.0.14[/COLOR][/B]
 • Extensive overhaul of UI. There are some parts of the skin that I don't use so if something looks off, please let me know by opening an issue in my Github repo
 • Fixed blank Search window on new Kodi installs
 • Fixed stacked widget renaming
@@ -117,7 +125,7 @@
 • Updated Github documentation to reflect new UI changes
 • Other fixes/changes
 
-[B]1.0.13[/B]
+[B][COLOR accent_color]Version 1.0.13[/COLOR][/B]
 • Added functionality for:
   • Rearranging and renaming widgets
   • Renaming main menu labels
@@ -134,16 +142,16 @@
 • Reactivated Shift view
 • Other changes/fixes
 
-[B]1.0.12[/B]
+[B][COLOR accent_color]Version 1.0.12[/COLOR][/B]
 • Added customizable load delay for stacked widgets. You can find this new setting in Skin settings » Options
 • Added optional display of countdown timer for use with the stacked widget load delay
 • Added toggle for auto-scrolling labels on LandscapeInfo widgets
 • Cleaned up LandscapeInfo widget for episodes
 
-[B]1.0.11[/B]
+[B][COLOR accent_color]Version 1.0.11[/COLOR][/B]
 • Quick fix for stacked widgets not loading on startup
 
-[B]1.0.10[/B]
+[B][COLOR accent_color]Version 1.0.10[/COLOR][/B]
 • Resized all Poster, Landscape, and LandscapeInfo widgets
 • Resized PVR, Addon, and Favorites widgets
 • Resized artwork for InfoWall, WideInfoWall, Wall, WideWall, and Poster views
@@ -156,10 +164,10 @@
 • Fixed widget sorting behavior
 • Added new detailed documentation for skin setup to Github repo
 
-[B]1.0.9[/B]
+[B][COLOR accent_color]Version 1.0.9[/COLOR][/B]
 • Small fixes
 
-[B]1.0.8[/B]
+[B][COLOR accent_color]Version 1.0.8[/COLOR][/B]
 • Added custom category widgets. You are no longer limited to top and bottom category widgets
 • Added optional stacked category widgets
 • Added Clear Path option for Main Menu paths and category widgets
@@ -172,13 +180,13 @@
 • Removed startup video (Total skin size is now under 7 MB)
 • Other small fixes/changes
 
-[B]1.0.7[/B]
+[B][COLOR accent_color]Version 1.0.7[/COLOR][/B]
 • Re-added changelog viewing for other addons
 • Reverted focus and scrolling behavior for widgets that don't use the InfoPanel
 • Added details to Available updates category widget. You can now see how many addon updates are pending directly from the Addon section on the home screen
 • Added tip to Extra info to help with Kodi crashes
 
-[B]1.0.6[/B]
+[B][COLOR accent_color]Version 1.0.6[/COLOR][/B]
 • Added optional Raindrop Animated Background. You can turn this off in Skin settings » Options » Raindrop background. Note: Only works when you have Show media background toggled to 'off' in Skin settings » Artwork
 • Moved percent progress for widgets to InfoPanel
 • Changed widget scrolling behavior
@@ -187,10 +195,10 @@
 • Renamed Episode widget to LandscapeInfo
 • Other small fixes/changes
 
-[B]1.0.5[/B]
+[B][COLOR accent_color]Version 1.0.5[/COLOR][/B]
 • Fixed scrolling in changelog and setup guide windows
 
-[B]1.0.4[/B]
+[B][COLOR accent_color]Version 1.0.4[/COLOR][/B]
 
 [B]IMPORTANT NOTICE: IF YOUR WIDGETS WERE DELETED AFTER THIS UPDATE PLEASE READ INFO BELOW
 
@@ -201,31 +209,31 @@ In this version the default widgets that you may have seen on first install have
 • Renamed Changelog tab in Skin settings to Extra info
 • Added Setup Guide to Extra info
 
-[B]1.0.3[/B]
+[B][COLOR accent_color]Version 1.0.3[/COLOR][/B]
 • Added new InfoPanel for movie, show, and episode widgets
 • Moved startup video and widget limit settings to new Options tab in Skin settings
 • Small adjustments to most views
 • Cleaned up collections info panel
 • Small fixes/changes
 
-[B]1.0.2[/B]
+[B][COLOR accent_color]Version 1.0.2[/COLOR][/B]
 • Added changelog to Skin settings menu
 
-[B]1.0.1[/B]
+[B][COLOR accent_color]Version 1.0.1[/COLOR][/B]
 • Re-added startup video (Recommended to test with lower volume)
 • Made startup video optional
 • Added screenshots
 
-[B]1.0.0[/B]
+[B][COLOR accent_color]Version 1.0.0[/COLOR][/B]
 • Added adjustable widget limits for movies/shows and episodes
 
-[B]0.0.9[/B]
+[B][COLOR accent_color]Version 0.0.9[/COLOR][/B]
 • Small fixes/changes
 
-[B]0.0.8[/B]
+[B][COLOR accent_color]Version 0.0.8[/COLOR][/B]
 • Removed startup video
 
-[B]0.0.7 (Initial release)[/B]
+[B][COLOR accent_color]Version 0.0.7 (Initial release)[/COLOR][/B]
 Main changes from default Estuary include:
 • 2 NEW viewtypes ("WideWall" and "WideInfoWall")
 • Plenty of adjustments to pre-existing views

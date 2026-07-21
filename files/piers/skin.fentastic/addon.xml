@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="skin.fentastic" version="1.5.6" name="Fentastic"
+<addon id="skin.fentastic" version="1.5.7" name="Fentastic"
 	provider-name="fentastic-org, Ivar Brandt">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
-		<import addon="script.fentastic.helper" />
+		<import addon="script.fentastic.helper" version="0.8.3" />
 	</requires>
 	<extension point="xbmc.gui.skin" debugging="false">
 		<res width="1920" height="1440" aspect="4:3" default="false" folder="xml" />
