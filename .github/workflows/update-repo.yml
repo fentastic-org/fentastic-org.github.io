@@ -70,15 +70,6 @@ jobs:
             done
           done
 
-      - name: Build legacy flat catalog
-        if: steps.upstream.outputs.changed == 'true'
-        run: |
-          python scripts/create_repository.py \
-            --datadir=files \
-            src/repository.fentastic \
-            "build/${OMEGA_BRANCH}/script.fentastic.helper" \
-            "build/${OMEGA_BRANCH}/skin.fentastic"
-
       - name: Build Omega catalog
         if: steps.upstream.outputs.changed == 'true'
         run: |
@@ -99,11 +90,11 @@ jobs:
 
       - name: Prune superseded versions
         if: steps.upstream.outputs.changed == 'true'
-        run: python scripts/prune_old_versions.py files files/omega files/piers
+        run: python scripts/prune_old_versions.py files/omega files/piers
 
       - name: Publish add-on artwork
         if: steps.upstream.outputs.changed == 'true'
-        run: python scripts/copy_addon_assets.py files files/omega files/piers
+        run: python scripts/copy_addon_assets.py files/omega files/piers
 
       - name: Pack repository add-on zip for manual download
         if: steps.upstream.outputs.changed == 'true'
