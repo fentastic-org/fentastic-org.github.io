@@ -22,7 +22,7 @@
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
-</addon><addon id="script.fentastic.helper" name="FENtastic Helper" version="0.8.1" provider-name="Tikipeter, Ivar Brandt">
+</addon><addon id="script.fentastic.helper" name="FENtastic Helper" version="0.8.2" provider-name="Tikipeter, Ivar Brandt">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.19.1" />
@@ -35,10 +35,6 @@
         <license>GPL-2.0-only</license>
         <forum />
         <source />
-        <assets>
-            <icon>resources/media/icon.png</icon>
-            <fanart>resources/media/fanart.jpg</fanart>
-        </assets>
         <description lang="en_GB">FENtastic Helper for the FENtastic Skin.</description>
         <description lang="en_NZ">FENtastic Helper for the FENtastic Skin.</description>
         <description lang="en_US">FENtastic Helper for the FENtastic Skin.</description>
