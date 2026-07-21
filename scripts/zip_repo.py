@@ -28,6 +28,11 @@ with zipfile.ZipFile(output_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
 
 print(f"Packed: {zip_name}")
 
+for stale in repo_dir.glob("repository.fentastic-*.zip"):
+    if stale.name != zip_name:
+        stale.unlink()
+        print(f"Removed superseded: {stale.name}")
+
 index_path = repo_dir / "index.html"
 with io.open(index_path, "w", newline="\n") as f:
     f.write(f'<!DOCTYPE html>\n<a href="{zip_name}">{zip_name}</a>\n')
