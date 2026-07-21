@@ -59,14 +59,25 @@ jobs:
         if: steps.upstream.outputs.changed == 'true'
         run: pip install gitpython
 
+      - name: Fetch add-on sources
+        if: steps.upstream.outputs.changed == 'true'
+        run: |
+          for BRANCH in $(printf '%s\n%s\n' "$OMEGA_BRANCH" "$PIERS_BRANCH" | sort -u); do
+            for REPO in script.fentastic.helper skin.fentastic; do
+              git clone -q --depth 1 --branch "$BRANCH" \
+                "https://github.com/fentastic-org/${REPO}" "build/${BRANCH}/${REPO}"
+              rm -rf "build/${BRANCH}/${REPO}/.git"
+            done
+          done
+
       - name: Build legacy flat catalog
         if: steps.upstream.outputs.changed == 'true'
         run: |
           python scripts/create_repository.py \
             --datadir=files \
             src/repository.fentastic \
-            https://github.com/fentastic-org/script.fentastic.helper \
-            https://github.com/fentastic-org/skin.fentastic
+            "build/${OMEGA_BRANCH}/script.fentastic.helper" \
+            "build/${OMEGA_BRANCH}/skin.fentastic"
 
       - name: Build Omega catalog
         if: steps.upstream.outputs.changed == 'true'
@@ -74,8 +85,8 @@ jobs:
           python scripts/create_repository.py \
             --datadir=files/omega \
             src/repository.fentastic \
-            "https://github.com/fentastic-org/script.fentastic.helper#${OMEGA_BRANCH}" \
-            "https://github.com/fentastic-org/skin.fentastic#${OMEGA_BRANCH}"
+            "build/${OMEGA_BRANCH}/script.fentastic.helper" \
+            "build/${OMEGA_BRANCH}/skin.fentastic"
 
       - name: Build Piers catalog
         if: steps.upstream.outputs.changed == 'true'
@@ -83,8 +94,8 @@ jobs:
           python scripts/create_repository.py \
             --datadir=files/piers \
             src/repository.fentastic \
-            "https://github.com/fentastic-org/script.fentastic.helper#${PIERS_BRANCH}" \
-            "https://github.com/fentastic-org/skin.fentastic#${PIERS_BRANCH}"
+            "build/${PIERS_BRANCH}/script.fentastic.helper" \
+            "build/${PIERS_BRANCH}/skin.fentastic"
 
       - name: Prune superseded versions
         if: steps.upstream.outputs.changed == 'true'
