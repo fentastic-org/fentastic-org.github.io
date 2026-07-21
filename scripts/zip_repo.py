@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 repo_dir = Path(__file__).parent.parent
-addon_dir = repo_dir / "files" / "repository.fentastic"
+addon_dir = repo_dir / "src" / "repository.fentastic"
 addon_xml = addon_dir / "addon.xml"
 
 version = ET.parse(addon_xml).getroot().get("version")

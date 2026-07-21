@@ -42,7 +42,7 @@ jobs:
             done
           done
           # Rebuild when the repo add-on itself is bumped, not just on upstream commits
-          REPO_VERSION=$(python3 -c "import xml.etree.ElementTree as ET; print(ET.parse('files/repository.fentastic/addon.xml').getroot().get('version'))")
+          REPO_VERSION=$(python3 -c "import xml.etree.ElementTree as ET; print(ET.parse('src/repository.fentastic/addon.xml').getroot().get('version'))")
           CURRENT="${CURRENT}repository.fentastic=${REPO_VERSION}"
 
           echo "Current upstream: $CURRENT"
@@ -69,13 +69,14 @@ jobs:
 
       # Legacy flat catalog. repository.fentastic 1.0.1 shipped with these paths
       # hardcoded, so they must keep working until installs of it die out --
-      # this is the only channel through which 1.0.1 clients can reach 1.0.2.
+      # this is the only channel through which 1.0.1 clients can reach a newer
+      # repo add-on. Sources live in src/ so no build ever writes into an input.
       - name: Build legacy flat catalog
         if: steps.upstream.outputs.changed == 'true'
         run: |
           python scripts/create_repository.py \
             --datadir=files \
-            files/repository.fentastic \
+            src/repository.fentastic \
             https://github.com/fentastic-org/script.fentastic.helper \
             https://github.com/fentastic-org/skin.fentastic
 
@@ -84,7 +85,7 @@ jobs:
         run: |
           python scripts/create_repository.py \
             --datadir=files/omega \
-            files/repository.fentastic \
+            src/repository.fentastic \
             "https://github.com/fentastic-org/script.fentastic.helper#${OMEGA_BRANCH}" \
             "https://github.com/fentastic-org/skin.fentastic#${OMEGA_BRANCH}"
 
@@ -93,7 +94,7 @@ jobs:
         run: |
           python scripts/create_repository.py \
             --datadir=files/piers \
-            files/repository.fentastic \
+            src/repository.fentastic \
             "https://github.com/fentastic-org/script.fentastic.helper#${PIERS_BRANCH}" \
             "https://github.com/fentastic-org/skin.fentastic#${PIERS_BRANCH}"
 

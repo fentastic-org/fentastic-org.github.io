@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.fentastic" name="FENtastic Community Repository" version="1.0.2"
+<addon id="repository.fentastic" name="FENtastic Community Repository" version="1.0.3"
     provider-name="FENtastic Community">
     <extension point="xbmc.addon.repository" name="FENtastic Community Repository">
         <dir minversion="21.0.0" maxversion="21.9.9">
