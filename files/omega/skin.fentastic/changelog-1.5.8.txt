@@ -1,3 +1,6 @@
+[B][COLOR accent_color]Version 1.5.8[/COLOR][/B]
+• Fixed the panel behind the on-screen keyboard not filling ultrawide (21:9) screens
+
 [B][COLOR accent_color]Version 1.5.7[/COLOR][/B]
 • Fixed the Favourites button in the media menu not opening on Kodi 21
 • Collections, video versions and extras now show their own badge instead of
