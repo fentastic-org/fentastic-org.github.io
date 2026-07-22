@@ -19,21 +19,26 @@ jobs:
       - name: Check for upstream changes
         id: upstream
         run: |
-          OMEGA_BRANCH=main
-          PIERS_BRANCH=main
-          echo "OMEGA_BRANCH=${OMEGA_BRANCH}" >> "$GITHUB_ENV"
-          echo "PIERS_BRANCH=${PIERS_BRANCH}" >> "$GITHUB_ENV"
+          HELPER_BRANCH=main
+          SKIN_OMEGA_BRANCH=omega
+          SKIN_PIERS_BRANCH=piers
+          echo "HELPER_BRANCH=${HELPER_BRANCH}" >> "$GITHUB_ENV"
+          echo "SKIN_OMEGA_BRANCH=${SKIN_OMEGA_BRANCH}" >> "$GITHUB_ENV"
+          echo "SKIN_PIERS_BRANCH=${SKIN_PIERS_BRANCH}" >> "$GITHUB_ENV"
 
           CURRENT=""
-          for BRANCH in $(printf '%s\n%s\n' "$OMEGA_BRANCH" "$PIERS_BRANCH" | sort -u); do
-            for REPO in script.fentastic.helper skin.fentastic; do
-              SHA=$(git ls-remote "https://github.com/fentastic-org/${REPO}" "refs/heads/${BRANCH}" | cut -f1)
-              if [ -z "$SHA" ]; then
-                echo "::error::Branch ${BRANCH} not found in ${REPO}"
-                exit 1
-              fi
-              CURRENT="${CURRENT}${REPO}@${BRANCH}=${SHA}:"
-            done
+          for SRC in \
+            "script.fentastic.helper@${HELPER_BRANCH}" \
+            "skin.fentastic@${SKIN_OMEGA_BRANCH}" \
+            "skin.fentastic@${SKIN_PIERS_BRANCH}"; do
+            REPO=${SRC%@*}
+            BRANCH=${SRC#*@}
+            SHA=$(git ls-remote "https://github.com/fentastic-org/${REPO}" "refs/heads/${BRANCH}" | cut -f1)
+            if [ -z "$SHA" ]; then
+              echo "::error::Branch ${BRANCH} not found in ${REPO}"
+              exit 1
+            fi
+            CURRENT="${CURRENT}${REPO}@${BRANCH}=${SHA}:"
           done
           REPO_VERSION=$(python3 -c "import xml.etree.ElementTree as ET; print(ET.parse('src/repository.fentastic/addon.xml').getroot().get('version'))")
           CURRENT="${CURRENT}repository.fentastic=${REPO_VERSION}"
@@ -62,13 +67,14 @@ jobs:
       - name: Fetch add-on sources
         if: steps.upstream.outputs.changed == 'true'
         run: |
-          for BRANCH in $(printf '%s\n%s\n' "$OMEGA_BRANCH" "$PIERS_BRANCH" | sort -u); do
-            for REPO in script.fentastic.helper skin.fentastic; do
-              git clone -q --depth 1 --branch "$BRANCH" \
-                "https://github.com/fentastic-org/${REPO}" "build/${BRANCH}/${REPO}"
-              rm -rf "build/${BRANCH}/${REPO}/.git"
-            done
-          done
+          fetch() {
+            git clone -q --depth 1 --branch "$2" \
+              "https://github.com/fentastic-org/$1" "$3"
+            rm -rf "$3/.git"
+          }
+          fetch script.fentastic.helper "$HELPER_BRANCH"     build/helper
+          fetch skin.fentastic          "$SKIN_OMEGA_BRANCH" build/skin-omega
+          fetch skin.fentastic          "$SKIN_PIERS_BRANCH" build/skin-piers
 
       - name: Build Omega catalog
         if: steps.upstream.outputs.changed == 'true'
@@ -76,8 +82,8 @@ jobs:
           python scripts/create_repository.py \
             --datadir=files/omega \
             src/repository.fentastic \
-            "build/${OMEGA_BRANCH}/script.fentastic.helper" \
-            "build/${OMEGA_BRANCH}/skin.fentastic"
+            build/helper \
+            build/skin-omega
 
       - name: Build Piers catalog
         if: steps.upstream.outputs.changed == 'true'
@@ -85,8 +91,8 @@ jobs:
           python scripts/create_repository.py \
             --datadir=files/piers \
             src/repository.fentastic \
-            "build/${PIERS_BRANCH}/script.fentastic.helper" \
-            "build/${PIERS_BRANCH}/skin.fentastic"
+            build/helper \
+            build/skin-piers
 
       - name: Prune superseded versions
         if: steps.upstream.outputs.changed == 'true'
